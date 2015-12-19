@@ -32,7 +32,10 @@ void insertion_sort(int a[], int n) {
 }
 
 void shift_d(int a[], int first, int last, int d) {
-
+	int p;
+	for(p=last; p >= first; p = p - d){
+		a[p] = a[p-d];
+	}
 }
 
 void insertion_sort_d(int a[], int n, int d) {
@@ -40,11 +43,11 @@ void insertion_sort_d(int a[], int n, int d) {
 	if(n<=d)
 		return;
 	for(k=0; k<d; k=k+1) {
-		for(i=k+d; i<n; i=i+k+d) {
+		for(i=k+d; i<n; i=i+d) {
 			w=a[i];
-			for(j=k; j<n&&a[j]<=w; j=j+d) 
+			for(j=k; j<i&&a[j]<=w; j=j+d) 
 				continue;
-			shift(a, j, i, d);
+			shift_d(a, j, i, d);
 			a[j]=w;
 		}
 	}
@@ -54,12 +57,14 @@ int dim[]={1, 2, 4};
 
 void shell_sort(int a[], int n) {
 	int l;
-	for(l=0; l<n; l++)
+	for(l=0; l<3; l++)
 		insertion_sort_d(a, n, dim[l]);
 }
 
 int main(int argc, char const *argv[]) {
 	int array1[]={80, 35, 15, 40, 65};
-	insertion_sort(array1, 5);
+	shell_sort(array1, 5);
+	/*insertion_sort(array1, 5);*/
+	print_array(array1, 5);
 	return 0;
 }
