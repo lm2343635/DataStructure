@@ -31,7 +31,7 @@ void count_indegree() {
     for(head=0; head<N; head++) {
         indegree[head]=0;
         for(tail=0; tail<N; tail++) {
-            if(a[head][tail]==1)
+            if(a[tail][head]==1)
                 indegree[head]++;
         }
     }
@@ -43,7 +43,7 @@ void remove_node(int node) {
         if(a[node][head]==1) {
             indegree[head]--;
             if(indegree[head]==0) {
-                nodestack[stackp]=node;
+                nodestack[stackp]=head;
                 stackp++;
             }
         }
