@@ -31,13 +31,13 @@ int dl(int *val) {
 	while(i<=val[0]/2) {
 		j=i*2;
 		if(j+1<val[0]&&val[j+1]<val[j])
-			j++;;
+			j++;
 		if(val[val[0]]<val[j])
 			break;
 		val[i]=val[j];
 		i=j;
 	}
-	val[i]=0;
+	val[i]=val[i+1];
 	val[0]--;
 	return ret;
 }
@@ -54,10 +54,10 @@ void hs(int sz, int d[]) {
 }
 
 int main(int argc, char const *argv[]) {
-	int d[]={2, 0, 3, 1};
+	int d[]={2, 0, 3, 1, 4, 9, 7, 5};
 	// is(4, d);
 	
-	hs(4, d);
-	print_array(4, d);
+	hs(8, d);
+	print_array(8, d);
 	return 0;
 }
