@@ -10,6 +10,13 @@
 
 #define SIZE 5
 
+void print_array(int a[], int n) {
+    int i;
+    for(i=0; i<n; i++)
+        printf("%d ", a[i]);
+    printf("\n");
+}
+
 void swap(int *a, int *b) {
     int c;
     c=*a;
@@ -18,7 +25,6 @@ void swap(int *a, int *b) {
 }
 
 void f2(int data[], int s, int e) {
-    printf("fuck\n");
     int i=s, j=e, p;
     if(i>=j)
         return;
@@ -29,15 +35,11 @@ void f2(int data[], int s, int e) {
             i++;
         while (data[j]>p)
             j--;
-        printf("p=%d, i=%d, j=%d\n",p , i, j);
         if(i>=j) {
             break;
         }
-        
         swap(&data[i], &data[j]);
-        for(int k=0; k<SIZE; k++)
-            printf("%d ", data[k]);
-        printf("\n");
+        print_array(data, SIZE);
         i++;
         j--;
     }
@@ -58,10 +60,8 @@ void f3(int data[], int size) {
 }
 
 int main() {
-    int i;
     int array[SIZE]={0, 1, 3, 1, 4};
     f1(array, SIZE);
-    for(i=0; i<SIZE; i++)
-        printf("%d\n", array[i]);
+    print_array(array, SIZE);
     return 0;
 }
