@@ -11,7 +11,7 @@ int calc_skip(char *pattern) {
 	for(i=0; i<NUM_CHAR; i++)
 		skip[i]=m;
 	for(i=0; i<m; i++) 
-		skip[pattern[i]]=m-i;
+		skip[pattern[i]]=m-i-1;
 	return m;
 }
 
@@ -30,7 +30,7 @@ int faster_match(char *text, char *pattern, int n) {
 			}
 		}
 		printf("old i=%d, ", i);
-		i+=m-j+skip[text[i]];
+		i+=skip[text[i]] - skip[pattern[j]];
 		printf("new i=%d\n", i);
 	}
 	return -1;
@@ -53,10 +53,10 @@ int simple_match(char *text, char *pattern) {
 }
 
 int main(int argc, char const *argv[]) {
-	// char *text="XYXZde0XZZkWXYZ";
-	// char *pattern="WXYZ";
-	char *text="With the development of our country, environment problem...";
-	char *pattern="tries";
+	 /*char *text="XYXZde0XZZkWXYZ";	*/
+	 /*char *pattern="WXYZ";*/
+	char *text="Tom is a good student, while Lee is a bad student";
+	char *pattern="good";
 	int n=strlen(text);
 	printf("Using simple match: %d\n", simple_match(text, pattern));
 	printf("Using faster match: %d\n", faster_match(text, pattern, n));
