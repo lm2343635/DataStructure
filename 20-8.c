@@ -57,16 +57,18 @@ struct list *safe_f(struct list *p, struct list *q) {
 		if(q==NULL)
 			return NULL;
 		else
-			return cons(pt->elem , safe_f(pt, pt->next));
+			return cons(pt->elem , safe_f(NULL, pt->next));
 	} else {
-		return cons()
+		return cons(p->elem, safe_f(p->next, pt));
 	}
 }
 
 int main(int argc, char const *argv[]) {
-	struct list *p1, *p2;
+	struct list *p1, *p2, *p3;
 	p1=cons("blue", cons("yellow", cons("red", NULL)));
 	p2=cons("black", cons("white", NULL));
+	p3=cons("blue", cons("yellow", cons("red", NULL)));
 	print(f(p1, p2));
+	print(safe_f(p3, p3));
 	return 0;
 }
