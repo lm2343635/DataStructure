@@ -21,7 +21,7 @@ char a[N][N]={
 int sorted[N], indegree[N], nodestack[N], stackp=0;
 
 void print_array(int a[], int n) {
-    for(int i=0;i<N;i++) 
+    for(int i=0; i<n; i++) 
        printf("%d ", a[i]);
    printf("\n");
 }
