@@ -37,7 +37,7 @@ int dl(int *val) {
 		val[i]=val[j];
 		i=j;
 	}
-	val[i]=val[i+1];
+	val[i]=val[val[0]];
 	val[0]--;
 	return ret;
 }
@@ -48,16 +48,18 @@ void hs(int sz, int d[]) {
 	val[0]=0;
 	for(i=0; i<sz; i++)
 		in(d[i], val);
-	print_array(sz+1, val);
 	for(i=0; i<sz; i++)
 		d[i]=dl(val);
 }
 
 int main(int argc, char const *argv[]) {
-	int d[]={2, 0, 3, 1, 4, 9, 7, 5};
-	// is(4, d);
-	
-	hs(8, d);
-	print_array(8, d);
+	int d[]={2, 0, 3, 1};
+	int a[]={2, 0, 3, 1, 4, 9, 7, 5, 6, 8};
+	is(4, d);
+	printf("is: ");
+	print_array(4, d);	
+	hs(10, a);
+	printf("hs: ");
+	print_array(10, a);
 	return 0;
 }
