@@ -19,7 +19,7 @@ unsigned sizeq(queue q) {
 }
 
 void enq(queue q, int v) {
-	q->data[(q->head+q->count-1)%MAX]=v;
+	q->data[(q->head+q->count)%MAX]=v;
 	q->count++;
 }
 
@@ -47,14 +47,10 @@ void split(queue q, queue subq[]) {
 queue merge(queue q1, queue q2) {
 	queue q=newq();
 	while(sizeq(q1)>0||sizeq(q2)>0) {
-		if(sizeq(q1)==0) {
+		if(sizeq(q1)==0||(sizeq(q2)!=0&&peekq(q2)<peekq(q1))) {
 			enq(q, deq(q2));
-		} else if(sizeq(q2)==0) {
-			enq(q, deq(q1));
-		} else if(peekq(q1)<peekq(q2)) {
-			enq(q, deq(q1));
 		} else {
-			enq(q, deq(q2));
+			enq(q, deq(q1));
 		}
 	}
 	return q;
@@ -85,9 +81,9 @@ void show(queue q) {
 int main(int argc, char const *argv[]) {
 	queue q=newq();
 	enq(q, 3);
+	enq(q, 1);
 	enq(q, 2);
 	enq(q, 0);
-	enq(q, 1);	
-	show(q);
+	show(sort(q));
 	return 0;
 }
