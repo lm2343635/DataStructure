@@ -32,12 +32,11 @@ int main(int argc, char const *argv[]) {
 	for(i=N-1; i>=0; i--) {
 		downheap(i, N-1);
 	}
-	for(i=N-1; i>=0; i--) {
-		downheap(0, i);
-		t=a[0];
-		for(j=0; j<i; j++)
-			a[j]=a[j+1];
-		a[i]=t;
+	for(i=N-1; i>0; i--) {
+		t = a[0];
+		a[0] = a[i];
+		a[i] = t;
+		downheap(0, i-1);
 	}
 	print_array(a, N);
 	return 0;
